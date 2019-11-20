@@ -6,8 +6,12 @@ body {
 .wrapper {
     margin-right: auto;
     margin-left:  auto;
-    max-width: 80rem;
+    max-width: 68rem;
     color: #212529 !important;
+}
+
+.custom-nav {
+    background: #212529;
 }
 
 .video {
@@ -17,13 +21,18 @@ body {
 
 .card-video {
     padding: 1rem;
+    padding-top: 0rem;
 }
 
 .video-title {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 .video-description {
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: #9b9b9b;
+}
+
+.sidenav-trigger {
+    cursor: pointer;
 }

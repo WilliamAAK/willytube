@@ -3,7 +3,7 @@
 class Watch
 {   
     /**
-     * Gets video and 
+     * Gets video...
      *
      * @return void
      * @api
@@ -11,15 +11,27 @@ class Watch
     public static function getVideo(): void
     {
         if (!isset($_GET["video"])) 
+        {
             Api::error(400,"video is not defined");
+        }
 
-        # Gets url parameters/args example: api.php/watch=videoUid
-        //$tag = $_GET["video"];
+        /*
 
         $current_video = VideoFactory::getVideoByUid($_GET["video"]);
-        
-        # If tag is returned. Video should exist
 
+        */
+
+        # Connects to sqlite database
+        $db = Database::connect();
+
+        # Gets url parameters/args example: api.php/watch=videoTag
+        $uid = $_GET["video"];
+        
+        # Query database and fetch results to array
+        $current_video = $db->query("SELECT uid, videotype FROM videos WHERE uid = '" . $db->escapeString($uid) . "'");
+        $current_video = $current_video->fetchArray(SQLITE3_ASSOC);
+        
+        # If tag is not returned. Video should not exist
         if (empty($current_video))
         {
             Api::error(404, "Video not found");
@@ -32,20 +44,23 @@ class Watch
 
         # Check if videotype is an undefined offset
         if ($current_video["videotype"] > count($mime_types))
+        {
             Api::error(500, "Undefined offset in Watch.videoStream()");
+        }
 
         # Gets mime type offset
         $mime_type      = $mime_types[$current_video["videotype"]];
         $file_extension = $file_extensions[$current_video["videotype"]];
-        $file_location  = $storage . $tag . "." . $file_extension;
+        $file_location  = $storage . $current_video["uid"] . "." . $file_extension;
 
-        if (!empty($mime_type))
+        if (empty($mime_type))
         {
-            Watch::streamVideo($file_location, $mime_type);
-        } else {
             Api::error(500, "Mime-type not found in Watch.videoStream()");
         }
 
+        # Start streaming video file
+        Watch::streamVideo($file_location, $mime_type);
+            
     }
 
     /**
@@ -55,6 +70,8 @@ class Watch
      */
     public static function streamVideo($file_location, $mime_type): void
     {
+        $server_protocol = $_SERVER["SERVER_PROTOCOL"];
+
         $file   = $file_location;
         $fp     = @fopen($file, 'rb');
         $size   = filesize($file); // File size
@@ -69,20 +86,20 @@ class Watch
             $c_end   = $end;
             list(, $range) = explode('=', $_SERVER['HTTP_RANGE'], 2);
             if (strpos($range, ',') !== false) {
-                header('HTTP/1.1 416 Requested Range Not Satisfiable');
+                header($server_protocol .' 416 Requested Range Not Satisfiable');
                 header("Content-Range: bytes $start-$end/$size");
                 exit;
             }
             if ($range == '-') {
                 $c_start = $size - substr($range, 1);
             }else{
-                $range  = explode('-', $range);
+                $range   = explode('-', $range);
                 $c_start = $range[0];
                 $c_end   = (isset($range[1]) && is_numeric($range[1])) ? $range[1] : $size;
             }
             $c_end = ($c_end > $end) ? $end : $c_end;
             if ($c_start > $c_end || $c_start > $size - 1 || $c_end >= $size) {
-                header('HTTP/1.1 416 Requested Range Not Satisfiable');
+                header($server_protocol . ' 416 Requested Range Not Satisfiable');
                 header("Content-Range: bytes $start-$end/$size");
                 exit;
             }
@@ -90,7 +107,7 @@ class Watch
             $end    = $c_end;
             $length = $end - $start + 1;
             fseek($fp, $start);
-            header('HTTP/1.1 206 Partial Content');
+            header($server_protocol . ' 206 Partial Content');
         }
         header("Content-Range: bytes $start-$end/$size");
         header("Content-Length: ".$length);
@@ -115,8 +132,10 @@ class Watch
      */
     public static function videoDetails(): void
     {
-        if (!isset($_GET["video"])) 
+        if (!isset($_GET["video"]))
+        {
             Api::error(400,"video is not defined");
+        }
 
         # Connects to sqlite database.
         $db = Database::connect();

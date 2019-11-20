@@ -13,25 +13,34 @@
 <body>
     
     <nav>
-        <div class="nav-wrapper teal lighten-2">
+        <div class="nav-wrapper custom-nav">
             <div class="wrapper">
-                <a href="#" class="brand-logo"></a>
-                <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="/" class="brand-logo">WillyTube</a>
+                <a data-target="sidenav-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li><a href="collapsible.html">JavaScript</a></li>
+                    <li><a href="upload.html">Last opp</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-  <ul class="sidenav" id="mobile-menu">
-    <li><a href="sass.html">Sass</a></li>
-    <li><a href="badges.html">Components</a></li>
-    <li><a href="collapsible.html">Javascript</a></li>
-    <li><a href="mobile.html">Mobile</a></li>
-  </ul>
+    <ul id="sidenav-menu" class="sidenav">
+        <li>
+            <div class="user-view">
+                <div class="background" style="background-color: #212121;">
+                </div>
+                <a href=""><span class="white-text name">WillyTube non final release</span></a>
+                <a href=""><span class="white-text email">willytube@protonmail.com</span></a>
+            </div>
+        </li>
+        <li><a class="waves-effect" href=""><i class="material-icons">home</i>Forsiden</a></li>
+        <li><a href="">Second Link</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Subheader</a></li>
+        <li><a class="waves-effect" href="">Third Link With Waves</a></li>
+    </ul>
 
     <div class="row wrapper">
         <div class="col s12 m12">
@@ -42,13 +51,13 @@
                     </video>
                 </div>
                 <div class="card-video">
-                    <p id="video-title" class="video-title">Title</p>
-                    <p id="video-description" class="video-description">Description</p>
+                    <p id="video-title" class="video-title">Trip to beach</p>
+                    <p id="video-description" class="video-description">230 Visninger • Dec 8, 2019</p>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <script src="vendor/materialize/js/materialize.min.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/video.js"></script>

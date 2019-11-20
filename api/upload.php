@@ -26,17 +26,19 @@ if (isset($_POST["submit"]))
     $file_actual_ext = strtolower(end($file_ext));
 
     # Can be found in config.php
-    $allowed = UPLOAD_ALLOWED_FILE_TYPES;
+    $allowed      = UPLOAD_ALLOWED_FILE_TYPES;
+    $max_filesize = UPLOAD_MAX_SIZE;
+    $storage      = FILE_STORAGE;
 
     if (in_array($file_actual_ext, $allowed)) {
         if ($file_error === 0)
         {
-            if ($file_size < 100000000) # 10 Gigabytes
+            if ($file_size < $max_filesize) # 10 Gigabytes
             {
 
                 $file_name_new    = str_shuffle(uniqid()) . "." . "$file_actual_ext";
                 $file_name_new    = substr($file_name_new, 5);
-                $file_destination = FILE_STORAGE . $file_name_new;
+                $file_destination = $storage . $file_name_new;
                 move_uploaded_file($file_tmp_name, $file_destination);
 
             } else {
