@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="vendor/materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+    
+    <nav>
+        <div class="nav-wrapper teal lighten-2">
+            <div class="wrapper">
+                <a href="#" class="brand-logo"></a>
+                <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">JavaScript</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  <ul class="sidenav" id="mobile-menu">
+    <li><a href="sass.html">Sass</a></li>
+    <li><a href="badges.html">Components</a></li>
+    <li><a href="collapsible.html">Javascript</a></li>
+    <li><a href="mobile.html">Mobile</a></li>
+  </ul>
+
+    <div class="row wrapper">
+        <div class="col s12 m12">
+            <div class="card">
+                <div class="card-image">
+                    <video class="video" id="video" poster="" controls>
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="card-video">
+                    <p id="video-title" class="video-title">Title</p>
+                    <p id="video-description" class="video-description">Description</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="vendor/materialize/js/materialize.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/video.js"></script>
+</body>
+</html>

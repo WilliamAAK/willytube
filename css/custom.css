@@ -1,0 +1,29 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.2;
+}
+
+.wrapper {
+    margin-right: auto;
+    margin-left:  auto;
+    max-width: 80rem;
+    color: #212529 !important;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+}
+
+.card-video {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1.2rem;
+}
+
+.video-description {
+    font-size: 0.8rem;
+    color: #9b9b9b;
+}

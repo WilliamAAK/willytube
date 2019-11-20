@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="vendor/materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+    
+    <div class="row wrapper">
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Video opplasting</span>
+                    <p>Her kan du laste opp video til WillyTube™</p>
+
+                    <form action="api/upload.php" method="post" enctype="multipart/form-data">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file" name="file" multiple>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Last opp en eller flere filer">
+                            </div>
+                        </div>
+
+                        <input class="btn" type="submit" value="Last opp" name="submit">
+                    </form>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="vendor/materialize/js/materialize.min.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+</html>
