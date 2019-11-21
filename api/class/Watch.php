@@ -3,36 +3,22 @@
 class Watch
 {   
     /**
-     * Gets video...
+     * Checks if supplied uid matches any videos
      *
      * @return void
-     * @api
      */
-    public static function getVideo(): void
+    public static function initializeStream(): void
     {
         if (!isset($_GET["video"])) 
         {
             Api::error(400,"video is not defined");
         }
 
-        /*
+        # Returns uid and videotype else null
+        $current_video = VideoFactory::getVideoParamsByUid($_GET["video"]);
 
-        $current_video = VideoFactory::getVideoByUid($_GET["video"]);
-
-        */
-
-        # Connects to sqlite database
-        $db = Database::connect();
-
-        # Gets url parameters/args example: api.php/watch=videoTag
-        $uid = $_GET["video"];
-        
-        # Query database and fetch results to array
-        $current_video = $db->query("SELECT uid, videotype FROM videos WHERE uid = '" . $db->escapeString($uid) . "'");
-        $current_video = $current_video->fetchArray(SQLITE3_ASSOC);
-        
-        # If tag is not returned. Video should not exist
-        if (empty($current_video))
+        # If uid is not returned. Video can not be found
+        if (empty($current_video["uid"]))
         {
             Api::error(404, "Video not found");
         }
@@ -45,7 +31,7 @@ class Watch
         # Check if videotype is an undefined offset
         if ($current_video["videotype"] > count($mime_types))
         {
-            Api::error(500, "Undefined offset in Watch.videoStream()");
+            Api::error(500, "Undefined offset in Watch.getVideo()");
         }
 
         # Gets mime type offset
@@ -53,9 +39,14 @@ class Watch
         $file_extension = $file_extensions[$current_video["videotype"]];
         $file_location  = $storage . $current_video["uid"] . "." . $file_extension;
 
+        if (!file_exists($file_location))
+        {
+            Api::error(500, "File not found in Watch.getVideo()");
+        }
+
         if (empty($mime_type))
         {
-            Api::error(500, "Mime-type not found in Watch.videoStream()");
+            Api::error(500, "Mime-type not found in Watch.getVideo()");
         }
 
         # Start streaming video file
@@ -64,22 +55,24 @@ class Watch
     }
 
     /**
-     * Streams raw video bytes
+     * Streams video
+     * Support for partial content.
      *
      * @return void
+     * @api
      */
     public static function streamVideo($file_location, $mime_type): void
     {
         $server_protocol = $_SERVER["SERVER_PROTOCOL"];
-
         $file   = $file_location;
         $fp     = @fopen($file, 'rb');
         $size   = filesize($file); // File size
         $length = $size;           // Content length
         $start  = 0;               // Start byte
         $end    = $size - 1;       // End byte
+        
+        header("Accept-Ranges: 0-$length");
         header("Content-Type: " . $mime_type);
-        //header("Accept-Ranges: 0-$length");
         header("Accept-Ranges: bytes");
         if (isset($_SERVER['HTTP_RANGE'])) {
             $c_start = $start;
@@ -125,7 +118,7 @@ class Watch
     }
 
     /**
-     * Prints out video details
+     * Prints video title and description
      *
      * @return void
      * @api
@@ -137,15 +130,8 @@ class Watch
             Api::error(400,"video is not defined");
         }
 
-        # Connects to sqlite database.
-        $db = Database::connect();
-
-        # Gets url parameters/args example: api.php/watch=videoTag
-        $tag = $_GET["video"];
-        
-        # Query database and fetch results to array
-        $current_video = $db->query("SELECT title, desc FROM videos WHERE tag = '" . $db->escapeString($tag) . "'");
-        $current_video = $current_video->fetchArray(SQLITE3_ASSOC);
+        # Returns video title and description else null
+        $current_video = VideoFactory::getVideoDetailsByUid($_GET["video"]);
 
         if (!empty($current_video))
         {

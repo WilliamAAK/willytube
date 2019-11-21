@@ -2,16 +2,17 @@
 
 /**
  * This is the main configuration file for "WillyTube"
- * 
  */
+
+// Local parameters
 define("DB_FILE", "data.db");
 define("FILE_STORAGE", "H:/");
+define("API_ALLOW_ERROR_MESSAGES", true);
 
 // Upload parameters
-
 define("UPLOAD_MAX_SIZE", 100000000); # 10 Gigabytes
 
-define("UPLOAD_ALLOWED_FILE_TYPES", [ # Allowed file extensions
+define("UPLOAD_ALLOWED_FILE_TYPES", [
     "mp4"
 ]);
 

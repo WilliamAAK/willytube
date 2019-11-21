@@ -1,9 +1,9 @@
 
-function loadBtn()
+function loadVideo()
 {
     let video = document.getElementById('video');
 
-    video.src = "/api/watch.php?action=stream&video=" + params.v;
+    video.src = "http://localhost/api/watch.php?action=stream&video=" + params.v;
 
     video.play();
 }
@@ -25,4 +25,4 @@ function transformToAssocArray( prmstr ) {
 
 var params = getSearchParameters();
 
-loadBtn();
+loadVideo();

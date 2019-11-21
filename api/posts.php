@@ -7,3 +7,18 @@ include_once("class/Api.php");
 include_once("class/Posts.php");
 include_once("config/config.php");
 include_once("class/Database.php");
+
+if (!isset($_GET["action"]))
+{
+    Api::error(400,"action is not defined");
+}
+
+switch($_GET["action"]) 
+{
+    case 'listRecent':
+        Posts::listRecent();
+    break;
+    default:
+        Api::error(422, "hmm something is missing");
+    break;
+}

@@ -4,11 +4,15 @@ class Api
 {
     public static function error($res, $msg): void
     {
-        header('Content-Type: application/json');
         header($_SERVER["SERVER_PROTOCOL"] . " " . $res);
-        die(json_encode([
-            "responseStatus" => $res,
-            "message"        => $msg
-        ]));
+        if (API_ALLOW_ERROR_MESSAGES == true)
+        {
+            header('Content-Type: application/json');
+            die(json_encode([
+                "responseStatus" => $res,
+                "message"        => $msg
+            ]));
+        }
+        die();
     }
 }
