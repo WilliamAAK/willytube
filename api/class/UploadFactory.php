@@ -4,7 +4,7 @@
 
 class UploadFactory
 {
-    public static function addVideoToDatabase($uid, $title, $videotype)
+    public static function addVideoToDatabase($uid, $title, $videotype): void
     {
         # Connects to sqlite database
         $db = Database::connect();

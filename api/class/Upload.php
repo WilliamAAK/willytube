@@ -69,16 +69,6 @@ class Upload
                         }
                     } 
 
-                    switch ($file_actual_ext) {
-                        case 'mp4':
-                            $videotype = 0;
-                            break;
-                        
-                        default:
-                            $videotype = 1;
-                            break;
-                    }
-
                     if (!isset($videotype))
                     {
                         Api::error(500, "No videotype match in Upload.start()");

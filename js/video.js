@@ -1,13 +1,10 @@
 const params = getSearchParameters();
 
-loadVideo();
-loadVideoTitle();
-
 function loadVideo()
 {
     let video = document.getElementById('video');
 
-    video.src = "/api/watch.php?action=stream&video=" + params.v;
+    video.src = server[0] + "/api/watch.php?action=stream&video=" + params.v;
 
     video.play();
 }
@@ -43,4 +40,9 @@ function loadVideoTitle()
     
     //xhr.setRequestHeader("Content-Type", "multipart/form-data");
     xhr.send();
+}
+
+window.onload = function() {
+    loadVideo();
+    loadVideoTitle();
 }
