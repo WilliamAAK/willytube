@@ -36,3 +36,7 @@ body {
 .sidenav-trigger {
     cursor: pointer;
 }
+
+.determinate {
+    transition: width 0.25s;
+}

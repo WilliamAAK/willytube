@@ -18,7 +18,7 @@ if (!isset($_GET["action"]))
 switch($_GET["action"]) 
 {
     case 'stream':
-        Watch::initializeStream();
+        Watch::startVideo();
     break;
     case 'details':
         Watch::videoDetails();

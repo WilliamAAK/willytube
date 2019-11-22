@@ -7,7 +7,7 @@ class Watch
      *
      * @return void
      */
-    public static function initializeStream(): void
+    public static function startVideo(): void
     {
         if (!isset($_GET["video"])) 
         {
@@ -50,7 +50,11 @@ class Watch
         }
 
         # Start streaming video file
-        Watch::streamVideo($file_location, $mime_type);
+        if(!connection_aborted())
+        {
+            Watch::streamVideo($file_location, $mime_type);
+        }
+        exit();
             
     }
 

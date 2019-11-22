@@ -1,9 +1,13 @@
+const params = getSearchParameters();
+
+loadVideo();
+loadVideoTitle();
 
 function loadVideo()
 {
     let video = document.getElementById('video');
 
-    video.src = "http://localhost/api/watch.php?action=stream&video=" + params.v;
+    video.src = "/api/watch.php?action=stream&video=" + params.v;
 
     video.play();
 }
@@ -23,6 +27,20 @@ function transformToAssocArray( prmstr ) {
   return params;
 }
 
-var params = getSearchParameters();
 
-loadVideo();
+function loadVideoTitle()
+{
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "/api/watch.php?action=details&video=" + params.v);
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const json = JSON.parse(this.responseText)
+            document.getElementById("videoTitle").innerHTML = json["title"];
+        }
+    }
+    
+    //xhr.setRequestHeader("Content-Type", "multipart/form-data");
+    xhr.send();
+}
