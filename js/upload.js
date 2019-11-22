@@ -11,7 +11,7 @@ function uploadFile(e)
 
     const xhr = new XMLHttpRequest();
 
-    xhr.open("POST", getPreferredServer() +"/api/upload.php");
+    xhr.open("POST", "/api/upload.php");
     xhr.upload.addEventListener("progress", e => {
         const percent = e.lengthComputable ? (e.loaded / e.total) * 100 : 0;
 
