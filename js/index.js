@@ -4,7 +4,7 @@ function loadPosts()
 {
     const xhr = new XMLHttpRequest();
 
-    xhr.open("GET", server[0] + "/api/posts.php?action=listRecent");
+    xhr.open("GET", getPreferredServer() +"/api/posts.php?action=listRecent");
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {

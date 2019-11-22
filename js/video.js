@@ -4,7 +4,7 @@ function loadVideo()
 {
     let video = document.getElementById('video');
 
-    video.src = server[0] + "/api/watch.php?action=stream&video=" + params.v;
+    video.src = getPreferredServer() + "/api/watch.php?action=stream&video=" + params.v;
 
     video.play();
 }
@@ -29,7 +29,7 @@ function loadVideoTitle()
 {
     const xhr = new XMLHttpRequest();
 
-    xhr.open("GET", "/api/watch.php?action=details&video=" + params.v);
+    xhr.open("GET", getPreferredServer() + "/api/watch.php?action=details&video=" + params.v);
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
