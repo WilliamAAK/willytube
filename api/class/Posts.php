@@ -2,10 +2,10 @@
 
 class Posts
 {
-    public static function listRecent(): void
+    public static function listRecent(): array
     {
         $videos = PostsFactory::getVideosByRecent();
 
-        print(json_encode($videos));
+        return $videos;
     }
 }
