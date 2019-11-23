@@ -7,18 +7,23 @@ class Watch
      *
      * @return void
      */
-    public static function startVideo(): void
+    public static function getVideo(): void
     {
         if (!isset($_GET["video"])) 
         {
             Api::error(400,"video is not defined");
         }
 
+        if(connection_aborted())
+        {
+            die();
+        }
+
         # Returns uid and videotype else null
         $current_video = VideoFactory::getVideoParamsByUid($_GET["video"]);
 
         # If uid is not returned. Video can not be found
-        if (empty($current_video["uid"]))
+        if ($current_video == null)
         {
             Api::error(404, "Video not found");
         }
@@ -41,7 +46,7 @@ class Watch
 
         if (!file_exists($file_location))
         {
-            Api::error(500, "File not found in Watch.getVideo()");
+            Api::error(404, "File not on server");
         }
 
         if (empty($mime_type))
@@ -50,12 +55,33 @@ class Watch
         }
 
         # Start streaming video file
-        if(!connection_aborted())
+        Watch::streamVideo($file_location, $mime_type);
+
+    }
+
+    /**
+     * Prints video title and description
+     *
+     * @return void
+     * @api
+     */
+    public static function videoDetails(): void
+    {
+        if (!isset($_GET["video"]))
         {
-            Watch::streamVideo($file_location, $mime_type);
+            Api::error(400,"video is not defined");
         }
-        exit();
-            
+
+        # Returns video title and description else null
+        $current_video = VideoFactory::getVideoDetailsByUid($_GET["video"]);
+
+        if ($current_video == null)
+        {
+            Api::error(404, "Video not found");
+        }
+
+        header('Content-Type: application/json');
+        print(json_encode($current_video));
     }
 
     /**
@@ -119,30 +145,5 @@ class Watch
         }
         fclose($fp);
         exit();
-    }
-
-    /**
-     * Prints video title and description
-     *
-     * @return void
-     * @api
-     */
-    public static function videoDetails(): void
-    {
-        if (!isset($_GET["video"]))
-        {
-            Api::error(400,"video is not defined");
-        }
-
-        # Returns video title and description else null
-        $current_video = VideoFactory::getVideoDetailsByUid($_GET["video"]);
-
-        if (!empty($current_video))
-        {
-            header('Content-Type: application/json');
-            print(json_encode($current_video));
-        } else {
-            Api::error(404, "Video not found");
-        }
     }
 }

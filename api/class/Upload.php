@@ -7,6 +7,11 @@ class Upload
 
     public function __construct()
     {
+        if ($_SERVER["REQUEST_METHOD"] == "OPTIONS")
+        {
+            Api::error(200, "Yes you can my baby ;)");
+        }
+
         if ($_SERVER["REQUEST_METHOD"] !== "POST")
         {
             Api::error(405, "Request method not allowed");

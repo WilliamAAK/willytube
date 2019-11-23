@@ -7,9 +7,9 @@ class VideoFactory
     /**
      * Returns uid and videotype
      *
-     * @return array
+     * @return array/null
      */
-    public static function getVideoParamsByUid($uid): array
+    public static function getVideoParamsByUid($uid)
     {
         # Connects to sqlite database
         $db = Database::connect();
@@ -28,11 +28,11 @@ class VideoFactory
     }
 
     /**
-     * Returns video title and description
+     * Returns video title
      *
-     * @return array
+     * @return array/null
      */
-    public static function getVideoDetailsByUid($uid): array
+    public static function getVideoDetailsByUid($uid)
     {
         # Connects to sqlite database
         $db = Database::connect();
@@ -50,8 +50,4 @@ class VideoFactory
         return $results;
     }
 
-    public static function getPostsByRecent()
-    {
-        
-    }
 }

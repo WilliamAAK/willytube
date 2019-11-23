@@ -1,6 +1,35 @@
+// Super shitty code
+
 const params = getSearchParameters();
 
+window.onload = function() {
+    loadVideo();
+}
+
 function loadVideo()
+{
+    const xhr = new XMLHttpRequest();
+    var count = 0;
+
+    xhr.open("GET", getPreferredServer() + "/api/watch.php?action=details&video=" + params.v);
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const json = JSON.parse(this.responseText)
+            document.getElementById("videoTitle").innerHTML = json["title"];
+            insertVideo()
+        }
+        
+    }
+
+    xhr.timeout = 1500; // Set timeout to 4 seconds (4000 milliseconds)
+    xhr.ontimeout = function () {
+         alert("Timed out!!!"); 
+    }
+    xhr.send();
+}
+
+function insertVideo()
 {
     let video = document.getElementById('video');
 
@@ -22,27 +51,4 @@ function transformToAssocArray( prmstr ) {
       params[tmparr[0]] = tmparr[1];
   }
   return params;
-}
-
-
-function loadVideoTitle()
-{
-    const xhr = new XMLHttpRequest();
-
-    xhr.open("GET", getPreferredServer() + "/api/watch.php?action=details&video=" + params.v);
-
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            const json = JSON.parse(this.responseText)
-            document.getElementById("videoTitle").innerHTML = json["title"];
-        }
-    }
-    
-    //xhr.setRequestHeader("Content-Type", "multipart/form-data");
-    xhr.send();
-}
-
-window.onload = function() {
-    loadVideo();
-    loadVideoTitle();
 }

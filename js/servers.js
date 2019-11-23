@@ -1,8 +1,8 @@
-var server = [
-    ""
+var servers = [
+    "http://trygve.raskest.net:1337"
 ];
 
 function getPreferredServer()
 {
-    return server[0];
+    return servers[0];
 }

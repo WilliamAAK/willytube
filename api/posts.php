@@ -19,7 +19,7 @@ if (!isset($_GET["action"]))
 switch($_GET["action"]) 
 {
     case 'listRecent':
-        print(json_encode(Posts::listRecent()));
+        Posts::listRecent();
     break;
     default:
         Api::error(422, "hmm something is missing");
