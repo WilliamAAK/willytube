@@ -20,6 +20,10 @@ function loadVideo()
             document.getElementById("videoDate").innerHTML = json["date"];
             insertVideo()
         }
+        if (this.readyState == 4 && this.status == 404) {
+            const json = JSON.parse(this.responseText)
+            document.getElementById("videoTitle").innerHTML = json["message"];
+        }
         
     }
     xhr.send();
