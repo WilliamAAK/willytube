@@ -6,7 +6,7 @@
 
 // Local parameters
 define("DB_FILE", "data.db");
-define("FILE_STORAGE", "H:/");
+define("FILE_STORAGE", "/videos/");
 define("API_ALLOW_ERROR_MESSAGES", true);
 
 // Upload parameters

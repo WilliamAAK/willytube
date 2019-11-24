@@ -29,9 +29,13 @@ function uploadFile(e)
         {
             jsonToTable(JSON.parse(this.responseText));
         }
+        if (this.readyState == 4 && this.status !== 200) 
+        {
+            jsonToTable(JSON.parse(this.responseText));
+        }
     }
     
-    xhr.setRequestHeader("Content-Type", "multipart/form-data");
+    //xhr.setRequestHeader("Content-Type", "multipart/form-data");
     xhr.send(new FormData(uploadForm));
 }
 
