@@ -8,7 +8,7 @@ class PostsFactory
         $db = Database::connect();
 
         # Query database and fetch results to array
-        $results = $db->query("SELECT uid, title, date FROM videos ORDER BY id desc");
+        $results = $db->query("SELECT uid, title, date FROM videos ORDER BY id asc");
         while ($dbs_row = $results->fetchArray(SQLITE3_ASSOC)) {
             $assoc_array[] = $dbs_row;
         }
