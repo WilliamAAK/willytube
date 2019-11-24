@@ -11,7 +11,7 @@ function uploadFile(e)
 
     const xhr = new XMLHttpRequest();
 
-    xhr.open("POST", servers[0] + "/api/upload.php");
+    xhr.open("POST", "/api/upload.php");
     xhr.upload.addEventListener("progress", e => {
         const percent = e.lengthComputable ? (e.loaded / e.total) * 100 : 0;
         progressBarFill.style.width = percent.toFixed(2) + "%";

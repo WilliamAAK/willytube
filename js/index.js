@@ -4,7 +4,7 @@ function loadPosts()
 {
     const xhr = new XMLHttpRequest();
 
-    xhr.open("GET", getPreferredServer() +"/api/posts.php?action=listRecent");
+    xhr.open("GET", "/api/posts.php?action=listRecent");
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -32,8 +32,10 @@ function jsonToTable(data) {
 
             const row = table.insertRow(0);
             const cell1 = row.insertCell(0);
+            const cell2 = row.insertCell(1);
 
             cell1.innerHTML = "<a class='' href='/watch.html?v=" + data[i].uid + "'>" + data[i].title + "</a>";
+            cell2.innerHTML = data[i].date;
         }
     }
 }

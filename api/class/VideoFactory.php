@@ -38,7 +38,7 @@ class VideoFactory
         $db = Database::connect();
 
         # Query database and fetch results to array
-        $results = $db->query("SELECT title FROM videos WHERE uid = '" . $db->escapeString($uid) . "'");
+        $results = $db->query("SELECT title, date FROM videos WHERE uid = '" . $db->escapeString($uid) . "'");
         $results = $results->fetchArray(SQLITE3_ASSOC);
         $db->close();
 
@@ -46,6 +46,8 @@ class VideoFactory
         {
             return null;
         }
+
+        $results["date"] = date('M d Y',$results["date"]);;
 
         return $results;
     }

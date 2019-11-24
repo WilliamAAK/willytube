@@ -15,7 +15,7 @@ class UploadFactory
         }
 
         # Query database and fetch results to array
-        $db->query("INSERT INTO videos (uid, title, videotype) VALUES ('" . $db->escapeString($uid) . "', '" . $db->escapeString($title) . "', '" . $db->escapeString($videotype) . "');");
+        $db->query("INSERT INTO videos (uid, title, videotype, date) VALUES ('" . $db->escapeString($uid) . "', '" . $db->escapeString($title) . "', '" . $db->escapeString($videotype) . "', '" . $db->escapeString(time()) . "');");
         $db->close();
     }
 }
