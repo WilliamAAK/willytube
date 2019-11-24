@@ -65,6 +65,11 @@ class Upload
                     }
                     move_uploaded_file($file_tmp_name, $file_destination);
 
+                    if (!file_exists($file_destination))
+                    {
+                        Api::error(500, "File does not exist after move_uploaded_file in Upload.start()");
+                    }
+
                     for ($i = 0; $i < count($allowed); ++$i) 
                     {
                         if($allowed[$i] == $file_actual_ext)
