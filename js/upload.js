@@ -31,7 +31,7 @@ function uploadFile(e)
         }
     }
     
-    //xhr.setRequestHeader("Content-Type", "multipart/form-data");
+    xhr.setRequestHeader("Content-Type", "multipart/form-data");
     xhr.send(new FormData(uploadForm));
 }
 
