@@ -10,8 +10,12 @@ body {
     color: #212529 !important;
 }
 
+.subheader {
+    padding: 0.7rem;
+}
+
 .custom-nav {
-    background: #212529;
+    background: #212121;
 }
 
 .video {
@@ -39,4 +43,22 @@ body {
 
 .determinate {
     transition: width 0.25s;
+}
+
+
+/* navbar */
+
+.sidenav-trigger>.material-icons
+{
+  font-size:2em !important;
+}
+.notif-min
+{
+/*   display:none; */
+  float:right !important;
+}
+.Search-text
+{
+  color: #393939;
+  font-weight:500
 }

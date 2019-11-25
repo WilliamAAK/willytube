@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Shameless
+ */
 class Watch
 {   
     /**
@@ -78,6 +81,20 @@ class Watch
         if ($current_video == null)
         {
             Api::error(404, "Video not found");
+        }
+
+        # Can be found in config.php
+        $storage         = FILE_STORAGE;
+        $mime_types      = WATCH_MIME_TYPES;
+        $file_extensions = WATCH_FILE_EXTENSIONS;
+
+        # Gets mime type offset
+        $file_extension = $file_extensions[$current_video["videotype"]];
+        $file_location  = $storage . $current_video["uid"] . "." . $file_extension;
+
+        if (!file_exists($file_location))
+        {
+            Api::error(404, "File not on server");
         }
 
         header('Content-Type: application/json');

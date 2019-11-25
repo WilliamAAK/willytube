@@ -15,7 +15,7 @@ if (!isset($_GET["action"]))
 }
 
 
-switch($_GET["action"]) 
+switch(strtolower($_GET["action"])) 
 {
     case 'stream':
         Watch::getVideo();
