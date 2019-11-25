@@ -44,21 +44,3 @@ body {
 .determinate {
     transition: width 0.25s;
 }
-
-
-/* navbar */
-
-.sidenav-trigger>.material-icons
-{
-  font-size:2em !important;
-}
-.notif-min
-{
-/*   display:none; */
-  float:right !important;
-}
-.Search-text
-{
-  color: #393939;
-  font-weight:500
-}

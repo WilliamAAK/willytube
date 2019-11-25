@@ -7,7 +7,6 @@ include_once("class/Api.php");
 include_once("class/Search.php");
 include_once("config/config.php");
 include_once("class/Database.php");
-include_once("class/SearchFactory.php");
 
 if (!isset($_GET["action"]))
 {
