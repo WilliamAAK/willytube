@@ -1,11 +1,6 @@
 <?php
 
-/**
- * This is the main configuration file for "WillyTube"
- */
-
 // Local parameters
-define("DB_FILE", "data.db");
 define("FILE_STORAGE", "H:/");
 define("API_ALLOW_ERROR_MESSAGES", true);
 
