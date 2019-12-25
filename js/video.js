@@ -9,7 +9,6 @@ window.onload = function() {
 function loadVideo()
 {
     const xhr = new XMLHttpRequest();
-    var count = 0;
 
     xhr.open("GET", "/api/watch.php?action=details&video=" + params.v);
 
