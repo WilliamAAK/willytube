@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Opplasting | WillyTube™</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-    <link rel="stylesheet" href="vendor/materialize/css/materialize.min.css">
-    <link rel="stylesheet" href="css/custom.css">
+    <?php include 'common/head.html'; ?>
 </head>
 <body>
-    <?php
-    include 'common/nav.html';
-    ?>
+    <?php include 'common/nav.html'; ?>
     <div class="row wrapper">
         <div class="col s12">
             <div class="card">
@@ -71,9 +63,6 @@
             </div>
         </div>
     </div>
-
-    <script src="vendor/materialize/js/materialize.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/upload.js"></script>
+    <?php include 'common/jsInclude.html'; ?>
 </body>
 </html>

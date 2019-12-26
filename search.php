@@ -18,8 +18,8 @@
 
 
 
-    <script src="vendor/materialize/js/materialize.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/search.js"></script>
+    <?php
+    include 'common/jsInclude.html';
+    ?>
 </body>
 </html>
