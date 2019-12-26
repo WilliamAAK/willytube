@@ -21,5 +21,7 @@
     <?php
     include 'common/jsInclude.html';
     ?>
+
+<script src="js/search.js"></script>
 </body>
 </html>

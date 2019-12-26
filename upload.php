@@ -64,5 +64,6 @@
         </div>
     </div>
     <?php include 'common/jsInclude.html'; ?>
+    <script src="js/upload.js"></script>
 </body>
 </html>

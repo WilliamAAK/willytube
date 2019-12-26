@@ -24,5 +24,6 @@
         </div>
     </div>
     <?php include 'common/jsInclude.html'; ?>
+    <script src="js/video.js"></script>
 </body>
 </html>

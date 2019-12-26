@@ -35,5 +35,6 @@
         </div>
     </div>
     <?php include 'common/jsInclude.html'; ?>
+    <script src="js/index.js"></script>
 </body>
 </html>
