@@ -11,35 +11,9 @@
     <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
-    
-    <nav>
-        <div class="nav-wrapper custom-nav">
-            <div class="wrapper">
-                <a href="/" class="brand-logo">WillyTube</a>
-                <a data-target="sidenav-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="upload.html">Last opp</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <ul id="sidenav-menu" class="sidenav">
-        <li>
-            <div class="user-view">
-                <div class="background" style="background-color: #212121;">
-                </div>
-                <a href=""><span class="white-text name"></span></a>
-            </div>
-        </li>
-        <li><a class="waves-effect" href="/index.html"><i class="material-icons">home</i>Forsiden</a></li>
-        <li>
-            <div class="divider"></div>
-        </li>
-        
-        <li><a class="waves-effect" href="/upload.html">Last opp</a></li>
-    </ul>
-
+    <?php
+    include 'common/nav.html';
+    ?>
     <div class="row wrapper">
         <div class="col s12">
             <h5 style="display: inline-block;" class="subheader flow-text">Nylige opplastinger</h5>
