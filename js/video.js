@@ -16,7 +16,7 @@ function loadVideo()
         if (this.readyState == 4 && this.status == 200) {
             const json = JSON.parse(this.responseText)
             document.getElementById("videoTitle").innerHTML = json["title"];
-            document.getElementById("pageTitle").innerHTML = json["title"];
+            document.title = json["title"];
             document.getElementById("videoDate").innerHTML = json["date"];
             insertVideo()
         }
