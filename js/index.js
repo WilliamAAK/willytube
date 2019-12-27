@@ -34,7 +34,7 @@ function jsonToTable(data) {
             const cell1 = row.insertCell(0);
             const cell2 = row.insertCell(1);
 
-            cell1.innerHTML = "<a class='' href='/watch.html?v=" + data[i].uid + "'>" + data[i].title + "</a>";
+            cell1.innerHTML = "<a class='' href='/watch.php?v=" + data[i].uid + "'>" + data[i].title + "</a>";
             cell2.innerHTML = data[i].date;
         }
     }
